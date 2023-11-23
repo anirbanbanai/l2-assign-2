@@ -7,10 +7,14 @@ const createUsers = async(req: Request, res: Response)=>{
         const users = req.body.users;
         const result = await UsersService.creatUserIntoDb(users);
 
+        const {userId,username,fullName,age,email,isActive,hobbies,adress} = result;
+
+        const resultOutPass = {userId,username,fullName,age,email,isActive,hobbies,adress}
+
         res.status(200).json({
             success: true,
             message: 'User is created successfully',
-            data: result,
+            data: resultOutPass,
           });
         
     } catch (error) {
@@ -38,9 +42,49 @@ const getAllUsers = async(req: Request, res: Response)=>{
             message: error,
           });
     }
-}
+};
+
+
+const getSingleUser = async (req: Request, res: Response) => {
+    try {
+      const {userId}  = req.params;
+  
+      const result = await UsersService.getSingleUserFromDb(userId);
+  
+      res.status(200).json({
+        success: true,
+        message: 'Student fetch  successfull',
+        data: result,
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error,
+      });
+    }
+  };
+const deleteSingleUser = async (req: Request, res: Response) => {
+    try {
+      const {id}  = req.params;
+  
+      const result = await UsersService.deleteSingleUserFromDb(id);
+  
+      res.status(200).json({
+        success: true,
+        message: 'Student fdelete successfull',
+        data: result,
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error,
+      });
+    }
+  };
 
 export const UserController = {
     createUsers,
-    getAllUsers
+    getAllUsers,
+    getSingleUser,
+    deleteSingleUser
 }
