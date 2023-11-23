@@ -21,6 +21,10 @@ const UserSchema = new Schema<UsersInterface>({
     age: {type: Number},
     email: {type: String},
     isActive: {type: Boolean},
+    hobbies: {
+        type: [String],
+        enum: ["swiming","coding"]
+    },
     adress:AdressSchema,
 })
 
