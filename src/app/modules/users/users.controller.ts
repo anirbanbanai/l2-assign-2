@@ -7,14 +7,15 @@ const createUsers = async(req: Request, res: Response)=>{
         const users = req.body.users;
         const result = await UsersService.creatUserIntoDb(users);
 
-        const {userId,username,fullName,age,email,isActive,hobbies,adress} = result;
+        
+        // const {userId,username,fullName,age,email,isActive,hobbies,adress} = result;
 
-        const resultOutPass = {userId,username,fullName,age,email,isActive,hobbies,adress}
+        // const resultOutPass = {userId,username,fullName,age,email,isActive,hobbies,adress}
 
         res.status(200).json({
             success: true,
             message: 'User is created successfully',
-            data: resultOutPass,
+            data: result,
           });
         
     } catch (error) {
@@ -48,6 +49,7 @@ const getAllUsers = async(req: Request, res: Response)=>{
 const getSingleUser = async (req: Request, res: Response) => {
     try {
       const {userId}  = req.params;
+      console.log(req.params);
   
       const result = await UsersService.getSingleUserFromDb(userId);
   
