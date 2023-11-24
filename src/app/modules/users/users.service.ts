@@ -6,6 +6,8 @@ const creatUserIntoDb = async(user: UsersInterface)=>{
     return result;
 }
 
+
+
 const getAllUserFromDb = async () => {
     const result = await UserModels.aggregate([{$project:{age: 1,userId: 1,fullName:1,email:1,isActive: 1, hobbies: 1, address: 1}}]);
     return result;
