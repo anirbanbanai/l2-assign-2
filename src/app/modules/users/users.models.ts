@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import { Adress, FullName, UsersInterface,  } from "./users.interface";
+import bcrypt from "bcrypt";
 
 
 const FullNameSchema = new Schema<FullName>({
@@ -28,5 +29,23 @@ const UserSchema = new Schema<UsersInterface>({
     address:AdressSchema,
 })
 
+// UserSchema.pre<UsersInterface>("save")
+UserSchema.pre<UsersInterface>("save", async function (next) {
+    // if (!this.isModified("password")) {
+    //     return next();
+    // }
+
+    try {
+        // Generate a salt
+        const salt = await bcrypt.genSalt(10);
+        // Hash the password with the generated salt
+        const hashedPassword = await bcrypt.hash(this.password, salt);
+        // Replace the plain password with the hashed password
+        this.password = hashedPassword;
+        next();
+    } catch (error) {
+    console.log(error);
+    }
+});
 
 export const UserModels = model<UsersInterface>("User", UserSchema)
