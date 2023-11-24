@@ -8,9 +8,9 @@ const createUsers = async(req: Request, res: Response)=>{
         const result = await UsersService.creatUserIntoDb(users);
 
         
-        // const {userId,username,fullName,age,email,isActive,hobbies,adress} = result;
+        const {userId,username,fullName,age,email,isActive,hobbies,address} = result;
 
-        // const resultOutPass = {userId,username,fullName,age,email,isActive,hobbies,adress}
+        const resultOutPass = {userId,username,fullName,age,email,isActive,hobbies,address}
 
         res.status(200).json({
             success: true,
@@ -49,7 +49,6 @@ const getAllUsers = async(req: Request, res: Response)=>{
 const getSingleUser = async (req: Request, res: Response) => {
     try {
       const {userId}  = req.params;
-      console.log(req.params);
   
       const result = await UsersService.getSingleUserFromDb(userId);
   
@@ -65,6 +64,31 @@ const getSingleUser = async (req: Request, res: Response) => {
       });
     }
   };
+
+const updateSingleUser = async (req: Request, res: Response) => {
+    try {
+      const {userId}  = req.params;
+
+      const updatedData = req.body;
+  
+      const result = await UsersService.getUpdateUserData(userId, updatedData);
+  
+      res.status(200).json({
+        success: true,
+        message: 'Student update  successfull',
+        data: result,
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error,
+
+      });
+    }
+  };
+
+
+
 const deleteSingleUser = async (req: Request, res: Response) => {
     try {
       const {userId}  = req.params;
@@ -88,5 +112,6 @@ export const UserController = {
     createUsers,
     getAllUsers,
     getSingleUser,
-    deleteSingleUser
+    deleteSingleUser,
+    updateSingleUser
 }

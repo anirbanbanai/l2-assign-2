@@ -21,5 +21,5 @@ export type UsersInterface = {
   email: string;
   isActive: boolean;
   hobbies?: ["swiming", "coding"];
-  adress: Adress;
+  address: Adress;
 };

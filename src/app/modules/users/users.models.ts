@@ -25,7 +25,7 @@ const UserSchema = new Schema<UsersInterface>({
         type: [String],
         enum: ["swiming","coding"]
     },
-    adress:AdressSchema,
+    address:AdressSchema,
 })
 
 

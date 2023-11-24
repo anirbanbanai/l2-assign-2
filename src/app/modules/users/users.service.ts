@@ -30,6 +30,15 @@ const getAllUserFromDb = async () => {
     ]);
     return result;
   };
+
+  const getUpdateUserData = async (id: string, updatedData: Partial<UsersInterface>) => {
+    
+    const result = await UserModels.updateOne({ userId: id }, { $set: updatedData });
+  
+    return result;
+  };
+  
+
   const deleteSingleUserFromDb = async (id: string) => {
     const result = await UserModels.deleteOne({userId: id });
     return result;
@@ -39,5 +48,6 @@ export const UsersService = {
     creatUserIntoDb,
     getAllUserFromDb,
     getSingleUserFromDb,
+    getUpdateUserData,
     deleteSingleUserFromDb
 }
