@@ -15,7 +15,7 @@ const createUsers = async(req: Request, res: Response)=>{
         res.status(200).json({
             success: true,
             message: 'User is created successfully',
-            data: result,
+            data: resultOutPass,
           });
         
     } catch (error) {
