@@ -76,17 +76,19 @@ const getSingleOrdererFromDb = async (id: string) => {
   ]);
   return result;
 };
+
+
 const getTotalPriceOrdererFromDb = async (id: string) => {
   const result = await UserModels.aggregate([
-    { $match: { userId: parseFloat(id) } }, // Match the specific user
+    { $match: { userId: parseFloat(id) } }, 
     {
-        $unwind: '$orders' // Unwind the orders array
+        $unwind: '$orders' 
     },
     {
-        $group: {
-            _id: null,
-            total: { $sum: '$orders.price' } // Sum the prices of all orders
-        }
+      $group: {
+        _id: null,
+        totalCost: { $sum: { $multiply: ['$orders.price', '$orders.quantity'] } } 
+    }
     }
 ]);
   return result;

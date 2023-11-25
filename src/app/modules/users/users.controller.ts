@@ -51,7 +51,7 @@ const getAllUsers = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "User is created successfully",
+      message: "User is fetched successfully",
       data: result,
     });
   } catch (error) {
@@ -69,7 +69,7 @@ const getSingleUser = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "Student fetch  successfull",
+      message: "Student fetched  successfull",
       data: result,
     });
   } catch (error) {
@@ -144,8 +144,8 @@ const updateOrderSingleUser = async (req: Request, res: Response) => {
     await UsersService.getOrderUpdateUserData(userId, zodOrderValidate);
     res.status(200).json({
       success: true,
-      message: "Student update  successfull",
-      data: updatedData,
+      message: "Order created successfully!",
+      data: null,
     });
   } catch (error) {
     res.status(400).json({
@@ -159,12 +159,12 @@ const deleteSingleUser = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
 
-    const result = await UsersService.deleteSingleUserFromDb(userId);
+   await UsersService.deleteSingleUserFromDb(userId);
 
     res.status(200).json({
       success: true,
-      message: "Student fdelete successfull",
-      data: result,
+      message: "Student deleted successfull",
+      data: null,
     });
   } catch (error) {
     res.status(400).json({

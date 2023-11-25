@@ -1,8 +1,12 @@
 import { z } from "zod";
 
 const FullNameValidationSchema = z.object({
-    firstName: z.string().max(20," more then 20 characxter"),
-    lastName: z.string(),
+    firstName: z.string().max(20).refine((value) => value.trim().length > 0, {
+        message: "First name can't be empty after trimming",
+      }),
+      lastName: z.string().max(20).refine((value) => value.trim().length > 0, {
+        message: "First name can't be empty after trimming",
+      })
 });
 
 const AdressValidationSchema = z.object({
