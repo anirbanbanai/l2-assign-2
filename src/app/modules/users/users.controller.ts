@@ -79,6 +79,42 @@ const getSingleUser = async (req: Request, res: Response) => {
     });
   }
 };
+const getSingleOrder = async (req: Request, res: Response) => {
+  try {
+    const { userId } = req.params;
+
+    const result = await UsersService.getSingleOrdererFromDb(userId);
+
+    res.status(200).json({
+      success: true,
+      message: "Student fetch  successfull",
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error,
+    });
+  }
+};
+const getTotalPriceOrder = async (req: Request, res: Response) => {
+  try {
+    const { userId } = req.params;
+
+    const result = await UsersService.getTotalPriceOrdererFromDb(userId);
+
+    res.status(200).json({
+      success: true,
+      message: "Student fetch  successfull",
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error,
+    });
+  }
+};
 const updateSingleUser = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
@@ -145,4 +181,6 @@ export const UserController = {
   deleteSingleUser,
   updateSingleUser,
   updateOrderSingleUser,
+  getSingleOrder,
+  getTotalPriceOrder
 };

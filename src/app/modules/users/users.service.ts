@@ -24,6 +24,22 @@ const getAllUserFromDb = async () => {
   return result;
 };
 
+
+// const getAllUserFromDb = async () => {
+//   const result = await UserModels.aggregate([
+//     {
+//       $group:{_id: "$orders"}
+//     },
+//     {
+//       $project: {
+//         age: 1,
+//         orders: 1,
+//       },
+//     },
+//   ]);
+//   return result;
+// };
+
 const getSingleUserFromDb = async (id: string) => {
   const result = await UserModels.aggregate([
     {
@@ -41,6 +57,38 @@ const getSingleUserFromDb = async (id: string) => {
       },
     },
   ]);
+  return result;
+};
+
+
+const getSingleOrdererFromDb = async (id: string) => {
+  const result = await UserModels.aggregate([
+    {
+      $match: {
+        userId: parseFloat(id),
+      },
+    },
+    {
+      $project: {
+        orders: 1
+      },
+    },
+  ]);
+  return result;
+};
+const getTotalPriceOrdererFromDb = async (id: string) => {
+  const result = await UserModels.aggregate([
+    { $match: { userId: parseFloat(id) } }, // Match the specific user
+    {
+        $unwind: '$orders' // Unwind the orders array
+    },
+    {
+        $group: {
+            _id: null,
+            total: { $sum: '$orders.price' } // Sum the prices of all orders
+        }
+    }
+]);
   return result;
 };
 
@@ -77,4 +125,6 @@ export const UsersService = {
   getUpdateUserData,
   deleteSingleUserFromDb,
   getOrderUpdateUserData,
+  getSingleOrdererFromDb,
+  getTotalPriceOrdererFromDb
 };
