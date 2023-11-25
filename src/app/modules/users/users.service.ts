@@ -24,22 +24,6 @@ const getAllUserFromDb = async () => {
   return result;
 };
 
-
-// const getAllUserFromDb = async () => {
-//   const result = await UserModels.aggregate([
-//     {
-//       $group:{_id: "$orders"}
-//     },
-//     {
-//       $project: {
-//         age: 1,
-//         orders: 1,
-//       },
-//     },
-//   ]);
-//   return result;
-// };
-
 const getSingleUserFromDb = async (id: string) => {
   const result = await UserModels.aggregate([
     {

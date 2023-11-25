@@ -109,9 +109,13 @@ const getTotalPriceOrder = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    res.status(400).json({
+    res.status(404).json({
       success: false,
-      message: error,
+      message: "user not found",
+      error: {
+        code: 404,
+        description: "user not found"
+      }
     });
   }
 };
