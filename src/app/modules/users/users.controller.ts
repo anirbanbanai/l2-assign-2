@@ -71,7 +71,7 @@ const updateSingleUser = async (req: Request, res: Response) => {
 
       const updatedData = req.body;
   
-      const result = await UsersService.getUpdateUserData(userId, updatedData);
+    await UsersService.getUpdateUserData(userId, updatedData);
   
       res.status(200).json({
         success: true,
@@ -86,6 +86,29 @@ const updateSingleUser = async (req: Request, res: Response) => {
       });
     }
   };
+
+
+// const updateOrderSingleUser = async (req: Request, res: Response) => {
+//     try {
+//       const {userId}  = req.params;
+
+//       const updatedData = req.body;
+  
+//     await UsersService.getUpdateOrdersUserData(userId);
+  
+//       res.status(200).json({
+//         success: true,
+//         message: 'Student update  successfull',
+//         data: updatedData,
+//       });
+//     } catch (error) {
+//       res.status(400).json({
+//         success: false,
+//         message: error,
+
+//       });
+//     }
+//   };
 
 
 

@@ -1,4 +1,4 @@
-import { UsersInterface } from "./users.interface";
+import {  UsersInterface } from "./users.interface";
 import { UserModels } from "./users.models";
 
 const creatUserIntoDb = async(user: UsersInterface)=>{
@@ -17,7 +17,7 @@ const getAllUserFromDb = async () => {
     const result = await UserModels.aggregate([
         {
             $match:{
-                userId: parseFloat(id),
+                userId: id,
             }
         },
         {
@@ -39,6 +39,18 @@ const getAllUserFromDb = async () => {
   
     return result;
   };
+
+
+  // const getUpdateOrdersUserData = async (id: string) => {
+    
+  //   const result = await UserModels.aggregate([
+  //     {$match: { userId: parseFloat(id) }},
+  //     {$addFields:[ {productName: String, price: Number, quantity: Number}]},
+  //     {$out: "users"}
+  //   ]);
+  
+  //   return result;
+  // };
   
 
   const deleteSingleUserFromDb = async (id: string) => {
