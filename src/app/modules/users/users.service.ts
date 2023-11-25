@@ -17,7 +17,7 @@ const getAllUserFromDb = async () => {
     const result = await UserModels.aggregate([
         {
             $match:{
-                userId: id,
+                userId: parseFloat(id),
             }
         },
         {
@@ -41,17 +41,7 @@ const getAllUserFromDb = async () => {
   };
 
 
-  // const getUpdateOrdersUserData = async (id: string) => {
-    
-  //   const result = await UserModels.aggregate([
-  //     {$match: { userId: parseFloat(id) }},
-  //     {$addFields:[ {productName: String, price: Number, quantity: Number}]},
-  //     {$out: "users"}
-  //   ]);
-  
-  //   return result;
-  // };
-  
+ 
 
   const deleteSingleUserFromDb = async (id: string) => {
     const result = await UserModels.deleteOne({userId: id });
