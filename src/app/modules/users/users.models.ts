@@ -15,7 +15,7 @@ const AdressSchema = new Schema<Adress>({
 })
 
 const UserSchema = new Schema<UsersInterface>({
-    userId: {type: Number},
+    userId: {type: Number, unique: true},
     username: {type: String},
     password: {type: String},
     fullName: FullNameSchema,
@@ -24,7 +24,6 @@ const UserSchema = new Schema<UsersInterface>({
     isActive: {type: Boolean},
     hobbies: {
         type: [String],
-        enum: ["swiming","coding"]
     },
     address:AdressSchema,
 })

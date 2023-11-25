@@ -25,6 +25,6 @@ export type UsersInterface = {
   age: number;
   email: string;
   isActive: boolean;
-  hobbies?: ["swiming", "coding"];
+  hobbies: string[];
   address: Adress;
 };
