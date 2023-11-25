@@ -1,12 +1,14 @@
 import { Request, Response } from "express";
 import { UsersService } from "./users.service";
-import { OrdersSchema, UsersInterfaceValidationSchema } from "./users.zod.validation";
+import {
+  OrdersSchema,
+  UsersInterfaceValidationSchema,
+} from "./users.zod.validation";
 
 const createUsers = async (req: Request, res: Response) => {
   try {
-
     const users = req.body.users;
-    const zodParseData = UsersInterfaceValidationSchema.parse(users)
+    const zodParseData = UsersInterfaceValidationSchema.parse(users);
     const result = await UsersService.creatUserIntoDb(zodParseData);
 
     const {
@@ -98,15 +100,12 @@ const updateSingleUser = async (req: Request, res: Response) => {
   }
 };
 
-
 const updateOrderSingleUser = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
-
     const updatedData = req.body;
-   const zodOrderValidate = OrdersSchema.parse(updatedData)
+    const zodOrderValidate = OrdersSchema.parse(updatedData);
     await UsersService.getOrderUpdateUserData(userId, zodOrderValidate);
-
     res.status(200).json({
       success: true,
       message: "Student update  successfull",
@@ -119,6 +118,7 @@ const updateOrderSingleUser = async (req: Request, res: Response) => {
     });
   }
 };
+
 const deleteSingleUser = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
@@ -144,5 +144,5 @@ export const UserController = {
   getSingleUser,
   deleteSingleUser,
   updateSingleUser,
-  updateOrderSingleUser
+  updateOrderSingleUser,
 };
