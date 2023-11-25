@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { Adress, FullName, UsersInterface,  } from "./users.interface";
+import { Adress, FullName, Orders, UsersInterface,  } from "./users.interface";
 import bcrypt from "bcrypt";
 
 
@@ -8,12 +8,19 @@ const FullNameSchema = new Schema<FullName>({
     lastName: {type: String}
 })
 
+
 const AdressSchema = new Schema<Adress>({
     street: {type: String},
     city: {type: String},
     country: {type: String}
 })
-
+export const OrdersSchema = new Schema<Orders>(
+    {
+        productName: {type: String},
+        price: {type: Number},
+        quantity: {type: Number}
+    }
+)
 const UserSchema = new Schema<UsersInterface>({
     userId: {type: Number, unique: true},
     username: {type: String},
@@ -26,6 +33,7 @@ const UserSchema = new Schema<UsersInterface>({
         type: [String],
     },
     address:AdressSchema,
+    orders: OrdersSchema
 })
 
 
