@@ -4,3 +4,5 @@
 
 * build command is { npm run build }
 * run command is { npm run dev }
+
+* this project host in vercel . when you update project you need to code : { vercel --prod}
