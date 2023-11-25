@@ -84,7 +84,8 @@ const getUpdateUserData = async (
 ) => {
   const result = await UserModels.updateOne(
     { userId: parseFloat(id) },
-    { $addToSet: updatedData }
+    { $set: updatedData},
+    {new: true}
   );
 
   return result;
