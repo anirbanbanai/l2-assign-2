@@ -3,8 +3,6 @@ import { UserModels } from "./users.models";
 
 const creatUserIntoDb = async (user: UsersInterface) => {
 
-  // const newUser = new User(userData);
-  // return await newUser.save();
   
   const result = await UserModels.create(user);
   return result;
@@ -15,11 +13,9 @@ const getAllUserFromDb = async () => {
     {
       $project: {
         age: 1,
-        userId: 1,
+        username: 1,
         fullName: 1,
         email: 1,
-        isActive: 1,
-        hobbies: 1,
         address: 1,
         orders: 1,
       },
@@ -37,10 +33,13 @@ const getSingleUserFromDb = async (id: string) => {
     },
     {
       $project: {
+        userId: 1,
         username: 1,
         fullName: 1,
         age: 1,
         email: 1,
+        isActive: 1,
+        hobbies: 1,
         address: 1,
       },
     },
