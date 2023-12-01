@@ -7,9 +7,12 @@ import {
 
 const createUsers = async (req: Request, res: Response) => {
   try {
-    const users = req.body.users;
+
+    const users = req.body;
     const zodParseData = UsersInterfaceValidationSchema.parse(users);
     const result = await UsersService.creatUserIntoDb(zodParseData);
+
+
 
     const {
       userId,
@@ -51,7 +54,7 @@ const getAllUsers = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "User is fetched successfully",
+      message: "Users fetched successfully!",
       data: result,
     });
   } catch (error) {
@@ -69,7 +72,7 @@ const getSingleUser = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "Student fetched  successfull",
+      message: "User fetched successfully!",
       data: result,
     });
   } catch (error) {
@@ -87,7 +90,7 @@ const getSingleOrder = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "Student fetch  successfull",
+      message: "Order fetched successfully!",
       data: result,
     });
   } catch (error) {
@@ -105,7 +108,7 @@ const getTotalPriceOrder = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "Student fetch  successfull",
+      message: "Total price calculated successfully!",
       data: result,
     });
   } catch (error) {
@@ -129,7 +132,7 @@ const updateSingleUser = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "Student update  successfull",
+      message: "User updated successfully!",
       data: updatedData,
     });
   } catch (error) {
@@ -167,7 +170,7 @@ const deleteSingleUser = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "Student deleted successfull",
+      message: "User deleted successfully!",
       data: null,
     });
   } catch (error) {

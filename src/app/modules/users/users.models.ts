@@ -4,8 +4,8 @@ import bcrypt from "bcrypt";
 
 
 const FullNameSchema = new Schema<FullName>({
-    firstName: {type: String},
-    lastName: {type: String}
+    firstName: {type: String, required: true},
+    lastName: {type: String, required: true}
 })
 
 
@@ -22,7 +22,7 @@ export const OrdersSchema = new Schema<Orders>(
     }
 )
 const UserSchema = new Schema<UsersInterface>({
-    userId: {type: Number, unique: true},
+    userId: {type: Number, unique: true, required: true},
     username: {type: String},
     password: {type: String},
     fullName: FullNameSchema,

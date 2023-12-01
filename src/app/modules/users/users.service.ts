@@ -2,6 +2,10 @@ import { Orders, UsersInterface } from "./users.interface";
 import { UserModels } from "./users.models";
 
 const creatUserIntoDb = async (user: UsersInterface) => {
+
+  // const newUser = new User(userData);
+  // return await newUser.save();
+  
   const result = await UserModels.create(user);
   return result;
 };
