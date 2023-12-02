@@ -25,26 +25,7 @@ const getAllUserFromDb = async () => {
 };
 
 const getSingleUserFromDb = async (id: string) => {
-  // const result = await UserModels.aggregate([
-  //   {
-  //     $match: {
-  //       userId: parseFloat(id),
-  //     },
-  //   },
-  //   {
-  //     $project: {
-  //       userId: 1,
-  //       username: 1,
-  //       fullName: 1,
-  //       age: 1,
-  //       email: 1,
-  //       isActive: 1,
-  //       hobbies: 1,
-  //       address: 1,
-  //     },
-  //   },
-  // ]);
-
+ 
   const result = await UserModels.findOne({userId : id}, { userId: 1,
     username: 1,
     fullName: 1,
